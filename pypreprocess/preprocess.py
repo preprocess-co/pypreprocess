@@ -73,8 +73,7 @@ class Preprocess:
     def wait(self) -> PreprocessResponse:
         response = self.result()
         start_time = time.time()
-        print(response)
-        while not response.status in ["FINISHED", "OK"]:
+        while not response.data['process']['status'] in ["FINISHED"]:
             
             if time.time() - start_time > 300: 
                 break
@@ -82,7 +81,7 @@ class Preprocess:
             time.sleep(15)
             response = self.result()
         
-        if not response.status in ["FINISHED", "OK"]:
+        if not response.data['process']['status'] in ["FINISHED"]:
             raise TimeoutError("The waiting time is over 5 mins, please use result function to check the result later, or check your data in case something wrong.")
         
         return response
