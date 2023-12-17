@@ -29,7 +29,7 @@ To get an api key, feel free to send a request to [Support](mailto:support@prepr
 - If you don't want to wait consider calling `result()` and check the status if it's not FINISHED or OK, so it's still chunking.
     ```
     1, 2 and 3- result = preprocess.result()
-    - if result.status in ["FINISHED", "OK"]: 
+    - if result.data['process']['status] == "FINISHED": 
     -   print(result.data['chunks'])
     ```
 ## Other methods
