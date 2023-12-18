@@ -1,5 +1,5 @@
 [![Preprocess](https://playground.preprocess.co/try/logo_1.png)](https://preprocess.co)
-# Preprocess SDK
+# Preprocess SDK ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
 [Preprocess](https://preprocess.co) is an API service that splits any kind of document into optimal chunks of text for use in language model tasks.
 Given documents in input `Preprocess` splits them into chunks of text that respect the layout and semantics of the original document.
@@ -69,7 +69,7 @@ You can directly call one of those methods that'll be listed to get the result a
 - If you don't want to wait consider calling `result()` and check the status if it's not FINISHED, so it's still in chunking phase.
     ```python
     result = preprocess.result()
-    if result.data['process']['status] == "FINISHED": 
+    if result.data['process']['status'] == "FINISHED": 
        print(result.data['chunks'])
     ```
 
