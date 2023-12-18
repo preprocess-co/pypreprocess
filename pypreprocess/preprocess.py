@@ -29,7 +29,13 @@ class Preprocess:
             elif key == "process" and isinstance(value, PreprocessResponse): 
                 self._process_id = value.data["process"]["id"]
 
-            elif key in ["merge", "max", "min", "min_min", "table_output", "repeat_title", "table_header", "lamguage"]:
+            elif key in ["table_output_format", "table_output"]:
+                self._info["table_output_format"] = value
+
+            elif key in ["repeat_table_header", "table_header"]:
+                self._info["repeat_table_header"] = value
+                
+            elif key in ["merge", "max", "min", "min_min", "repeat_title", "lamguage"]:
                 self._info[key] = value
 
         if self._filepath != "":
@@ -54,11 +60,12 @@ class Preprocess:
                 open(self._filepath, 'rb')
             )
         }
-        data = {}
-        if self._info != {}:
-            data = self._info
 
-        request = self._post_request("chunk", data, file)
+        data = ""
+        if self._info != {}:
+            data = "?" + urlencode(self._info)
+
+        request = self._post_request("chunk"+data, {}, file)
 
         if request.status_code != 200:
             raise ConnectionError(f"There is error with the provided data, so please check your api key")
