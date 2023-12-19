@@ -15,7 +15,7 @@ class Preprocess:
             'x-api-key': self._api_key
         }
         self._filepath = ""
-        self._info = {}
+        self._options = {}
         self._process_id = None
         self._response = None
 
@@ -30,13 +30,13 @@ class Preprocess:
                 self._process_id = value.data["process"]["id"]
 
             elif key in ["table_output_format", "table_output"]:
-                self._info["table_output_format"] = value
+                self._options["table_output_format"] = value
 
             elif key in ["repeat_table_header", "table_header"]:
-                self._info["repeat_table_header"] = value
-                
-            elif key in ["merge", "max", "min", "min_min", "repeat_title", "lamguage"]:
-                self._info[key] = value
+                self._options["repeat_table_header"] = value
+
+            elif key in ["merge", "repeat_title"]:
+                self._options[key] = value
 
         if self._filepath != "":
             if not os.path.exists(self._filepath):
@@ -62,8 +62,8 @@ class Preprocess:
         }
 
         data = ""
-        if self._info != {}:
-            data = "?" + urlencode(self._info)
+        if self._options != {}:
+            data = "?" + urlencode(self._options)
 
         request = self._post_request("chunk"+data, {}, file)
 
@@ -128,13 +128,19 @@ class Preprocess:
     def get_filepath(self):
         return self._filepath
 
-    def set_info(self, **kwargs):
+    def set_options(self, **kwargs):
         for key, value in kwargs.items():
-            if key in ["merge", "max", "min", "min_min", "table_output", "repeat_title", "table_header", "lamguage"]:
-                self._info[key] = value
+            if key in ["table_output_format", "table_output"]:
+                self._options["table_output_format"] = value
 
-    def get_info(self):
-        return self._info
+            elif key in ["repeat_table_header", "table_header"]:
+                self._options["repeat_table_header"] = value
+
+            elif key in ["merge","repeat_title"]:
+                self._options[key] = value
+
+    def get_options(self):
+        return self._options
     
     def to_json(self):
        return json.dumps(self, default=lambda o: o.__dict__)
