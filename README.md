@@ -14,7 +14,7 @@ We support:
 ## Installation
 Install the Python `Preprocess` library if it is not already present:
 ```bash
-pip install preprocess
+pip install pypreprocess
 ```
 Alternatively, if you want to add it as a dependency with poetry: 
 ```bash
