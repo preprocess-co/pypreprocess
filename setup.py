@@ -7,12 +7,12 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '1.0.0'
+VERSION = '1.4.0'
 DESCRIPTION = 'Preprocess SDK'
 
 # Setting up
 setup(
-    name="PyPreprocess",
+    name="pypreprocess",
     version=VERSION,
     author="Preprocess",
     author_email="<support@preprocess.co>",
@@ -20,8 +20,9 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
+    license_files=('LICENSE',),
     install_requires=['requests'],
-    keywords=['python', 'python3', 'preprocess', 'chunks', 'paragraphs', 'chunk', 'paragraph', 'llama', 'llamaondex', "langchain"],
+    keywords=['python', 'python3', 'preprocess', 'chunks', 'paragraphs', 'chunk', 'paragraph', 'llama', 'llamaondex', "langchain", "chunking", "llm", "rag"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -29,5 +30,6 @@ setup(
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
+        "License :: OSI Approved :: MIT License"
     ]
 )

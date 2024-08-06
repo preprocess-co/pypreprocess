@@ -5,7 +5,7 @@ from .preprocessresponse import PreprocessResponse
 
 class Preprocess:
     def __init__(self, api_key, **kwargs) -> None:
-        self._base_url = "https://api.preprocess.co/"
+        self._base_url = "https://chunk.ing/"
 
         if api_key is None or api_key == "":
             raise ValueError("Please provice an api key to be used while doing the auth with the system.")
@@ -35,7 +35,14 @@ class Preprocess:
             elif key in ["repeat_table_header", "table_header"]:
                 self._options["repeat_table_header"] = value
 
-            elif key in ["merge", "repeat_title"]:
+            elif key in [
+                    "merge", 
+                    "repeat_title",
+                    "keep_header",
+                    "keep_footer",
+                    "smart_header"
+                    "image_text"
+                ]:
                 self._options[key] = value
 
         if self._filepath != "":
@@ -80,7 +87,7 @@ class Preprocess:
     def wait(self) -> PreprocessResponse:
         response = self.result()
         start_time = time.time()
-        while not response.data['process']['status'] in ["FINISHED"]:
+        while not response.data['process']['status'] in ["FINISHED", "FAILED"]:
             
             if time.time() - start_time > 300: 
                 break
@@ -88,7 +95,7 @@ class Preprocess:
             time.sleep(15)
             response = self.result()
         
-        if not response.data['process']['status'] in ["FINISHED"]:
+        if not response.data['process']['status'] in ["FINISHED", "FAILED"]:
             raise TimeoutError("The waiting time is over 5 mins, please use result function to check the result later, or check your data in case something wrong.")
         
         return response
@@ -136,7 +143,14 @@ class Preprocess:
             elif key in ["repeat_table_header", "table_header"]:
                 self._options["repeat_table_header"] = value
 
-            elif key in ["merge","repeat_title"]:
+            elif key in [
+                    "merge", 
+                    "repeat_title",
+                    "keep_header",
+                    "keep_footer",
+                    "smart_header"
+                    "image_text"
+                ]:
                 self._options[key] = value
 
     def get_options(self):

@@ -86,6 +86,10 @@ We support a few options you can configure to get the best result for your inges
 | `repeat_title` | `bool` |  False | If `True` each chunk will start with the title of the section in which is contained |
 | `repeat_table_header` | `bool` |  False | If `True` each chunk will start with the header of the table in which is contained |
 | `table_output_format` | `enum ['text', 'markdown', 'html']` |  `'text'` | Return tables in the format you need for your ingestion pipelines |
+| `keep_header` | `bool` | True | If set to `False`, the content of the headers will be removed. Headers may include page numbers, document titles, section titles, paragraph titles, and fixed layout elements. |
+| `smart_header` | `bool` | True | If set to `True`, only relevant titles will be included in the chunks, while other information will be removed. Relevant titles are those that should be part of the body of the page as a title. If set to `False`, only the keep_header parameter will be considered. If keep_header is `False`, the smart_header parameter will be ignored. |
+| `keep_footer` | `bool` | False | If set to `True`, the content of the footers will be included in the chunks. Footers may include page numbers, footnotes, and fixed layout elements. |
+| `image_text` | `bool` | False | If set to `True`, the text contained in the images will be added to the chunks. |
 
 You can pass each parameter from those during the SDK initialization
 ```python 
