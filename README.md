@@ -1,5 +1,4 @@
-[![Preprocess](https://playground.preprocess.co/logo.png)](https://preprocess.co)
-# Preprocess SDK ![V1.2.0](https://img.shields.io/badge/Version-1.2.0-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
+# Preprocess SDK ![V1.4.2](https://img.shields.io/badge/Version-1.4.2-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
 
 [Preprocess](https://preprocess.co) is an API service that splits any kind of document into optimal chunks of text for use in language model tasks.
 Given documents in input `Preprocess` splits them into chunks of text that respect the layout and semantics of the original document.
