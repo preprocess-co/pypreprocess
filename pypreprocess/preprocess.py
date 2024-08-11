@@ -40,7 +40,7 @@ class Preprocess:
                     "repeat_title",
                     "keep_header",
                     "keep_footer",
-                    "smart_header"
+                    "smart_header",
                     "image_text"
                 ]:
                 self._options[key] = value
