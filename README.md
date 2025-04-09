@@ -1,4 +1,4 @@
-# Preprocess SDK ![V1.4.3](https://img.shields.io/badge/Version-1.4.3-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
+# Preprocess SDK ![V1.5](https://img.shields.io/badge/Version-1.5-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
 
 [Preprocess](https://preprocess.co) is an API service that splits various types of documents into optimal chunks of text for use in language model tasks. It divides documents into chunks that respect the layout and semantics of the original content, accounting for sections, paragraphs, lists, images, data tables, text tables, and slides.
 
@@ -90,12 +90,15 @@ Preprocess offers several configuration options to tailor the chunking process t
 You can pass these parameters during SDK initialization:
 ```python 
 preprocess = Preprocess(api_key=YOUR_API_KEY, filepath="path/for/file", merge=True, repeat_title=True, ...)
+preprocess = Preprocess(api_key=YOUR_API_KEY, filepath="path/for/file", options={"merge": True, "repeat_title": True, ...})
 ```
 
 Or, set them later using the `set_options` method with a `dict`:
 ```python
 preprocess.set_options({"merge": True, "repeat_title": True, ...})
+preprocess.set_options(merge=True, repeat_title=True, ...)
 ```
+> **Note: if the parameter is present inside options dictionary, it will override the parameter passed in the function.**
 
 ## Chunking Files
 After initializing the SDK with a `filepath`, use the `chunk()` method to start chunking the file:

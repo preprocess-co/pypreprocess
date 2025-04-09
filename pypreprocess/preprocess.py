@@ -19,6 +19,13 @@ class Preprocess:
         self._process_id = None
         self._response = None
 
+
+        present_in_options = []
+        if "options" in kwargs:
+            self.set_options(kwargs['options'])
+            present_in_options = self._options.keys()
+
+
         for key, value in kwargs.items():
             if key == "filepath": 
                 self._filepath = value
@@ -28,22 +35,24 @@ class Preprocess:
 
             elif key == "process" and isinstance(value, PreprocessResponse): 
                 self._process_id = value.data["process"]["id"]
+                
+            elif key not in present_in_options:
+                if key in ["table_output_format", "table_output"]:
+                    self._options["table_output_format"] = value
 
-            elif key in ["table_output_format", "table_output"]:
-                self._options["table_output_format"] = value
+                elif key in ["repeat_table_header", "table_header"]:
+                    self._options["repeat_table_header"] = value
 
-            elif key in ["repeat_table_header", "table_header"]:
-                self._options["repeat_table_header"] = value
-
-            elif key in [
-                    "merge", 
-                    "repeat_title",
-                    "keep_header",
-                    "keep_footer",
-                    "smart_header",
-                    "image_text"
-                ]:
-                self._options[key] = value
+                elif key in [
+                        "merge", 
+                        "repeat_title",
+                        "keep_header",
+                        "keep_footer",
+                        "smart_header",
+                        "image_text",
+                        "webhook"
+                    ]:
+                    self._options[key] = value
 
         if self._filepath != "":
             if not os.path.exists(self._filepath):
@@ -135,7 +144,10 @@ class Preprocess:
     def get_filepath(self):
         return self._filepath
 
-    def set_options(self, **kwargs):
+    def set_options(self, options=None, **kwargs):
+        if options is not None:
+            kwargs.update(options)
+
         for key, value in kwargs.items():
             if key in ["table_output_format", "table_output"]:
                 self._options["table_output_format"] = value
@@ -149,7 +161,8 @@ class Preprocess:
                     "keep_header",
                     "keep_footer",
                     "smart_header"
-                    "image_text"
+                    "image_text",
+                    "webhook"
                 ]:
                 self._options[key] = value
 
