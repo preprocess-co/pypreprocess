@@ -50,7 +50,8 @@ class Preprocess:
                         "keep_footer",
                         "smart_header",
                         "image_text",
-                        "webhook"
+                        "webhook",
+                        "boundary_boxes"
                     ]:
                     self._options[key] = value
 
@@ -162,7 +163,8 @@ class Preprocess:
                     "keep_footer",
                     "smart_header"
                     "image_text",
-                    "webhook"
+                    "webhook",
+                    "boundary_boxes"
                 ]:
                 self._options[key] = value
 

@@ -1,4 +1,4 @@
-# Preprocess SDK ![V1.5](https://img.shields.io/badge/Version-1.5-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
+# Preprocess SDK ![V1.6](https://img.shields.io/badge/Version-1.6-333.svg?labelColor=eee) ![MIT License](https://img.shields.io/badge/License-MIT-333.svg?labelColor=eee)
 
 [Preprocess](https://preprocess.co) is an API service that splits various types of documents into optimal chunks of text for use in language model tasks. It divides documents into chunks that respect the layout and semantics of the original content, accounting for sections, paragraphs, lists, images, data tables, text tables, and slides.
 
@@ -85,6 +85,7 @@ Preprocess offers several configuration options to tailor the chunking process t
 | `smart_header` | `bool` | True | If set to `True`, only relevant headers will be included in the chunks, while other information will be removed. Relevant headers are those that should be part of the body of the page as a section/paragraph title. If set to `False`, only the `keep_header` parameter will be considered. If keep_header is `False`, the `smart_header` parameter will be ignored. |
 | `keep_footer` | `bool` | False | If set to `True`, the content of the footers will be included in the chunks. Footers may include page numbers, footnotes, and fixed layout elements. |
 | `image_text` | `bool` | False | If set to `True`, the text contained in the images will be added to the chunks. |
+| `boundary_boxes` | `bool` | False | If set to `True`, returns bounding box coordinates (top, left, height, width) for each chunk. |
 
 
 You can pass these parameters during SDK initialization:
